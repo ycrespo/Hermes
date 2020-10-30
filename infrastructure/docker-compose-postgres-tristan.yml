@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  db:
+    container_name: tristan
+    restart: always
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: Dylan
+      POSTGRES_PASSWORD: Souls
+    ports:
+      - 5435:5432
+    volumes:
+      - ./postgres:/var/lib/postgresql/tristan
+      
+  
