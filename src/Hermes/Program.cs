@@ -1,9 +1,11 @@
 using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Hermes.Core;
 using Hermes.Data.DataAccess;
 using Hermes.IoC;
 using Hermes.QuartzScheduler;
+using Hermes.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +16,7 @@ namespace Hermes
 {
     public class Program
     {
-        public static IConfiguration Configuration { get; set; }
+        private static IConfiguration Configuration { get; set; }
 
         public static void Main(string[] args)
         {
@@ -36,7 +38,7 @@ namespace Hermes
             }
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureServices((hostContext, services) =>
@@ -44,6 +46,7 @@ namespace Hermes
                     Configure(hostContext);
 
                     services.AddHostedService<QuartzHostedService>();
+                    services.Configure<MailSettings>(Configuration.GetSection("Mail"));
                     services.AddDbContext<HermesContext>(
                         options => options.UseNpgsql(Configuration.GetConnectionString("LoggerDb"),
                             npgsqlOptions => npgsqlOptions.UseNodaTime()));
@@ -51,7 +54,7 @@ namespace Hermes
                 .ConfigureContainer<ContainerBuilder>(builder =>
                 {
                     builder.RegisterModule(new QuartzModule(Configuration));
-                    builder.RegisterModule(new LoggerModule());
+                    builder.RegisterModule(new HermesModule());
                 })
                 .ConfigureLogging(loggingBuilder =>
                 {

@@ -28,7 +28,7 @@ namespace Hermes.IoC
                 .AsSelf()
                 .WithParameters(new[]
                 {
-                    new NamedParameter("jobType", typeof(LoggerJob)),
+                    new NamedParameter("jobType", typeof(GetAttachmentsJob)),
                     new NamedParameter("cronExpression", _configuration.GetValue<string>("Quartz:CronExpression") 
                                                          ?? throw new NullReferenceException("Cron Expression cannot be null"))
                 });

@@ -2,13 +2,11 @@ using System;
 
 namespace Hermes.Core.Models
 {
-    public class Mail : IEquatable<Mail>
-    { 
+    public class EntityBase : IEquatable<EntityBase>
+    {
         public Guid Id { get; set; }
 
-        public string Oggetto { get; set; }
-
-        public bool Equals(Mail other)
+        public bool Equals(EntityBase other)
         {
             if (ReferenceEquals(null, other))
             {
@@ -40,13 +38,13 @@ namespace Hermes.Core.Models
                 return false;
             }
 
-            return Equals((Mail) obj);
+            return Equals((EntityBase) obj);
         }
 
         public override int GetHashCode() => Id.GetHashCode();
 
-        public static bool operator ==(Mail left, Mail right) => Equals(left, right);
+        public static bool operator ==(EntityBase left, EntityBase right) => Equals(left, right);
 
-        public static bool operator !=(Mail left, Mail right) => !Equals(left, right);
+        public static bool operator !=(EntityBase left, EntityBase right) => !Equals(left, right);
     }
 }

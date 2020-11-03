@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Hermes.Core.Models;
 using Hermes.Data.DataAccess;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Hermes.Data.Gateways
@@ -17,50 +18,63 @@ namespace Hermes.Data.Gateways
             _context = context;
             _logger = logger;
         }
-        
-        public IEnumerable<Mail> ReadAsync() =>  _context.Mail.Local;
-        
-        public async Task<IEnumerable<Mail>> SaveAsync(IEnumerable<Mail> Mails)
-        {
-            
-            foreach (var Mail in Mails)
-            {
-                var inserted = await _context.AddAsync(Mail);
 
-                Mail.Id = inserted.Entity.Id;
+        public async Task<TblLastEmail> GetInitialDateAsync() => await _context.LastMail.OrderByDescending(lm => lm.ReceivedDate).FirstOrDefaultAsync();
+        public async Task<IEnumerable<TblMails>> ReadMailAsync() =>  await _context.Mail.ToListAsync();
+        
+        public async Task<IEnumerable<TBase>> SaveAsync<TBase>(IEnumerable<TBase> allEntities)  where TBase : EntityBase
+        {
+            var entities = allEntities.ToList();
+            foreach (var entity in entities)
+            {
+                var inserted = await _context.AddAsync(entity);
+
+                entity.Id = inserted.Entity.Id;
             }
             
             var result = await SaveChangesAsync("Cannot persist data to the database!!!");
             
             return result.HasError()
-                ? new List<Mail>()
-                : Mails;
+                ? new List<TBase>()
+                : entities;
         }
         
-        public async Task<IEnumerable<Mail>> UpdateAsync(IEnumerable<Mail> Mails)
+        public async Task<IEnumerable<TblMails>> UpdateMailsAsync(IEnumerable<TblMails> allMails)
         {
-            foreach (var Mail in Mails)
+            var mails = allMails.ToArray();
+            foreach (var mail in mails)
             {
-                _context.Mail.Update(Mail);
+                _context.Mail.Update(mail);
             }
             
             var result = await SaveChangesAsync("Can not Update Mailuments in database!!!"); 
 
             return result.HasError()
-                ? new List<Mail>()
-                : Mails;
+                ? new List<TblMails>()
+                : mails;
         }
         
-        public async Task<IEnumerable<Mail>> DeleteAsync(IEnumerable<Mail> Mails)
+        public async Task<TblLastEmail> UpdateInitialDateAsync(TblLastEmail initialDate)
         {
-            var entities = Mails.ToList();
+            _context.LastMail.Update(initialDate);
+            
+            var result = await SaveChangesAsync("Can not Update initial date in database!!!"); 
+
+            return result.HasError()
+                ? null
+                : initialDate;
+        }
+        
+        public async Task<IEnumerable<TblMails>> DeleteAsync(IEnumerable<TblMails> allMails)
+        {
+            var entities = allMails.ToList();
 
             _context.Mail.RemoveRange(entities);
 
             var result = await SaveChangesAsync("Can not delete Mailuments in database!!!");
 
             return result.HasError()
-                ? new List<Mail>()
+                ? new List<TblMails>()
                 : entities;
         }
         

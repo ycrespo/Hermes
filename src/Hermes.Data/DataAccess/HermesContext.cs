@@ -7,21 +7,44 @@ namespace Hermes.Data.DataAccess
     {
         public HermesContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<Mail> Mail { get; set; }
+        public DbSet<TblMails> Mail { get; set; }
+        public DbSet<TblLastEmail> LastMail { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region Mail Builder
-            var MailBuilder = modelBuilder.Entity<Mail>();
+            var mailBuilder = modelBuilder.Entity<TblMails>();
 
-            MailBuilder
-                .HasKey(Mail => Mail.Id);
+            mailBuilder
+                .HasKey(mail => mail.Id);
             
-            MailBuilder
-                .Property(Mail => Mail.Oggetto)
-                .HasMaxLength(maxLength: 100)
+            mailBuilder
+                .Property(mail => mail.Subject)
+                .HasMaxLength(maxLength: 250)
+                .IsRequired();
+            
+            mailBuilder
+                .Property(mail => mail.ReceivedDate)
+                .IsRequired();
+            
+            mailBuilder
+                .Property(mail => mail.Attachments)
+                .HasMaxLength(maxLength: 2500)
+                .IsRequired();
+            
+            #endregion
+            #region LastMail Builder
+            
+            var lastMailBuilder = modelBuilder.Entity<TblLastEmail>();
+            
+            lastMailBuilder
+                .HasKey(lm => lm.Id);
+
+            lastMailBuilder
+                .Property(lm => lm.ReceivedDate)
                 .IsRequired();
             #endregion
+
         }
     }
 }
