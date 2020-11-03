@@ -1,7 +1,7 @@
 using Autofac;
-using Tristan.Data.Gateways;
+using Hermes.Data.Gateways;
 
-namespace Tristan.IoC
+namespace Hermes.IoC
 {
     public class LoggerModule : Module
     {

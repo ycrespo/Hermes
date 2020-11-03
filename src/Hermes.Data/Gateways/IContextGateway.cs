@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tristan.Core.Models;
+using Hermes.Core.Models;
 
-namespace Tristan.Data.Gateways
+namespace Hermes.Data.Gateways
 {
     public interface IContextGateway
     {

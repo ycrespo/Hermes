@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>dotnet-Tristan-1C941A46-4F01-45B5-811A-86DEC8727AAF</UserSecretsId>
-    <RootNamespace>Tristan</RootNamespace>
+    <UserSecretsId>dotnet-Hermes-1C941A46-4F01-45B5-811A-86DEC8727AAF</UserSecretsId>
+    <RootNamespace>Hermes</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

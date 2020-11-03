@@ -6,7 +6,7 @@ using Quartz;
 using Quartz.Spi;
 using Serilog;
 
-namespace Tristan.QuartzScheduler
+namespace Hermes.QuartzScheduler
 {
     public class QuartzHostedService : IHostedService 
     {

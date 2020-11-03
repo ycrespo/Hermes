@@ -2,14 +2,14 @@
 using System;
 using System.Reflection;
 using Autofac;
+using Hermes.Jobs;
+using Hermes.QuartzScheduler;
 using Microsoft.Extensions.Configuration;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
-using Tristan.Jobs;
-using Tristan.QuartzScheduler;
 
-namespace Tristan.IoC
+namespace Hermes.IoC
 {
     public class QuartzModule : Autofac.Module
     {

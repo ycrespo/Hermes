@@ -1,6 +1,6 @@
 using System;
 
-namespace Tristan.QuartzScheduler
+namespace Hermes.QuartzScheduler
 {
     public class JobOptions
     {

@@ -1,4 +1,4 @@
-namespace Tristan.Core.Models
+namespace Hermes.Core.Models
 {
     public interface IResult<out TValue, out TError>
     {

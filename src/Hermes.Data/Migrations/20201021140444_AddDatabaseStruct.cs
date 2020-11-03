@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Tristan.Data.Migrations
+namespace Hermes.Data.Migrations
 {
     public partial class AddDatabaseStruct : Migration
     {

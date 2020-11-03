@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hermes.Core.Models;
+using Hermes.Data.Gateways;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Quartz;
-using Tristan.Core.Models;
-using Tristan.Data.Gateways;
 
-namespace Tristan.Jobs
+namespace Hermes.Jobs
 {
     [DisallowConcurrentExecution]
     public class LoggerJob : IJob

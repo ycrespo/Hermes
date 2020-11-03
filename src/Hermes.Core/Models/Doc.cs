@@ -1,6 +1,6 @@
 using System;
 
-namespace Tristan.Core.Models
+namespace Hermes.Core.Models
 {
     public class Mail : IEquatable<Mail>
     { 

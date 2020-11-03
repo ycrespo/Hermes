@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
-        <RootNamespace>Tristan.Core</RootNamespace>
+        <RootNamespace>Hermes.Core</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

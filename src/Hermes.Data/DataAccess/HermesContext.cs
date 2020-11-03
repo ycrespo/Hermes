@@ -1,7 +1,7 @@
+using Hermes.Core.Models;
 using Microsoft.EntityFrameworkCore;
-using Tristan.Core.Models;
 
-namespace Tristan.Data.DataAccess
+namespace Hermes.Data.DataAccess
 {
     public class HermesContext : DbContext
     {

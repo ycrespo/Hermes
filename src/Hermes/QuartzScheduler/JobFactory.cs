@@ -2,7 +2,7 @@ using Autofac;
 using Quartz;
 using Quartz.Spi;
 
-namespace Tristan.QuartzScheduler
+namespace Hermes.QuartzScheduler
 {
     public class JobFactory : IJobFactory
     {

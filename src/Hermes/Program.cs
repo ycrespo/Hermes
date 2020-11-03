@@ -1,16 +1,16 @@
 using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Hermes.Data.DataAccess;
+using Hermes.IoC;
+using Hermes.QuartzScheduler;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
-using Tristan.Data.DataAccess;
-using Tristan.IoC;
-using Tristan.QuartzScheduler;
 
-namespace Tristan
+namespace Hermes
 {
     public class Program
     {

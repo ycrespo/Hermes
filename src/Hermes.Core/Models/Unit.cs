@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Tristan.Core.Models
+namespace Hermes.Core.Models
 {
     public struct Unit : IEquatable<Unit>, IComparable<Unit>, IComparable
     {

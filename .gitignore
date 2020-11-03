@@ -332,6 +332,5 @@ ASALocalRun/
 BlazorServerDemoWithAuth/appsettings.json
 HowBuildThisApp.txt
 Logs/*
-Error/*
-Source/*
-Destination/*
+Attachments/*
+

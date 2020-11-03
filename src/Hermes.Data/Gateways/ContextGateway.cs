@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+using Hermes.Core.Models;
+using Hermes.Data.DataAccess;
 using Microsoft.Extensions.Logging;
-using Tristan.Data.DataAccess;
-using Tristan.Core.Models;
 
-namespace Tristan.Data.Gateways
+namespace Hermes.Data.Gateways
 {
     public class ContextGateway : IContextGateway
     {
